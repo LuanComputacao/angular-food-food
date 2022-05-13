@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FoodListService} from "../../service/food-list.service";
-import {FoodList} from "../../module/food-list";
+import {Food} from "../../interfaces/food";
 
 @Component({
   selector: 'app-food-list',
@@ -9,7 +9,7 @@ import {FoodList} from "../../module/food-list";
 })
 export class FoodListComponent implements OnInit {
 
-  public foodList: Array<FoodList> = [];
+  public foodList: Array<Food> = [];
 
   constructor(
     private foodListService: FoodListService
@@ -26,7 +26,7 @@ export class FoodListComponent implements OnInit {
       })
 
     this.foodListService.emitEvent.subscribe({
-      next: (data: FoodList) => this.foodList.push(data)
+      next: (data: Food) => this.foodList.push(data)
     })
   }
 

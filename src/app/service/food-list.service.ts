@@ -1,8 +1,7 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {Food} from "../interfaces/food";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {FoodList} from "../module/food-list";
+import {Food} from "../interfaces/food";
 
 @Injectable({
   providedIn: 'root'
@@ -17,18 +16,18 @@ export class FoodListService {
   ) {
   }
 
-  public foodlist(): Observable<Array<FoodList>> {
+  public foodlist(): Observable<Array<Food>> {
     return this.http
-      .get<Array<FoodList>>(`${this.url}/list-food`)
+      .get<Array<Food>>(`${this.url}/list-food`)
       .pipe(
         res => res,
         err => err
       )
   }
 
-  public foodListAdd(food: string): Observable<FoodList> {
+  public foodListAdd(food: string): Observable<Food> {
     return this.http
-      .post<FoodList>(
+      .post<Food>(
         `${this.url}/list-food`,
         {name: food}
       )
@@ -38,7 +37,7 @@ export class FoodListService {
       )
   }
 
-  public foodListAlert(food: FoodList): void {
+  public foodListAlert(food: Food): void {
     return this.emitEvent.emit(food);
   }
 }
